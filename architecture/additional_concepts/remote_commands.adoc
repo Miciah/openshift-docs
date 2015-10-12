@@ -19,10 +19,9 @@ Developers can link:../../dev_guide/executing_remote_commands.html[use the CLI]
 to execute remote commands in containers.
 
 == Server Operation
-The Kubelet handles remote execution requests from clients. Upon receiving a
-request, it upgrades the response, evaluates the request headers to determine
-what streams (`stdin`, `stdout`, and/or `stderr`) to expect to receive, and waits
-for the client to create the streams.
+The Kubelet handles remote execution requests from clients. The client opens
+a connection to the Kubelet, upgrades the connection to use the SPDY protocol
+and, creates streams for `stdin`, `stdout`, and/or `stderr`.
 
 After the Kubelet has received all the streams, it executes the command in the
 container, copying between the streams and the command's stdin, stdout, and
