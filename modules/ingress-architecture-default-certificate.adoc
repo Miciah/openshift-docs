@@ -1,0 +1,10 @@
+// Module included in the following assemblies:
+//
+// * architecture/ingress/default-certificate.adoc
+
+[id='deployments-repliasets-{context}']
+= The Default Certificate
+
+Every ingress controller has a default wildcard certificate. The ingress controller uses this certificate for incoming TLS connections for subdomains of the ingress controller's domain if no `Route` resource specifies a custom certificate for that subdomain.
+
+If you do not configure a custom default certificate for an ingress controller, the ingress operator generates a default certificate using a self-signed certificate authority (CA).  Other cluster components may be automatically configured to trust the ingress operator's CA.  However, clients outside the cluster cannot be expected to trust the CA, which means end users' web browsers will warn that the certificate is untrusted.  Therefore it is recommended to replace the operator-generated default certificate with a custom default certificate that is signed by a trusted CA.  See xref:ingress-setting-a-custom-default-certificate.adoc[Setting a Custom Default Certificate].
